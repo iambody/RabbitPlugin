@@ -1,0 +1,22 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+repositories {
+    mavenCentral()
+}
+//设置maven deployer
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //设置插件的GAV参数
+            pom.groupId = 'com.myplugin.libs'
+            pom.artifactId = 'rabbitplugin'
+            pom.version = 1.6
+            //文件发布到下面目录
+            repository(url: uri('../rplugin'))
+        }
+    }
+}
